@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f2f5;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            margin: 20px 0;
+        }
+        input[type="file"] {
+            display: block;
+            margin: 10px auto;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .profile-avatar {
+            margin: 15px 0;
+        }
+        .no-avatar {
+            color: #888;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome, {{username}}</h1>
+        
+        <div class="profile-avatar">
+            {{#if avatar}}
+                <img src="/{{avatar}}" alt="Profile Avatar" width="150" height="150">
+            {{else}}
+                <p class="no-avatar">No profile picture available.</p>
+            {{/if}}
+        </div>
+
+        <form action="/profile" method="post" enctype="multipart/form-data">
+            <input type="file" name="avatar" />
+            <input type="submit" value="Upload">
+        </form>
+    </div>
+</body>
+</html>
