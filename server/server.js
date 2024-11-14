@@ -97,6 +97,34 @@ app.get("/users", (req, res) => {
 // Error handling middleware
 app.use(errorHandler);
 
+app.get("/profile",async(req,res)=>{
+    
+    let allblog=await Profie.find();
+    console.log("chalgya oyee");
+    
+    res.render("profile",{profile : allblog});
+}) 
+// app.get("/profile", async (req, res) => {
+//     let profile = await Profie.findOne();
+//     console.log(profile)
+    
+//     if (profile) {
+//         // console.log("Image URL:"+ profile.image);  // Log the image path
+//         res.render("profile", { image: profile.image });
+//     } else {
+//         console.log("No profile found.");
+//         res.render("profile", { image: null });
+//     }
+// });
+
+//register route
+app.use("/api/register" , require("./routes/userRoutes"));
+app.use("/api/newsletter" , require("./routes/newsLetterRoutes"));
+app.use("/api/doctors", doctorsDetails);
+app.listen(port , ()=>{
+    console.log(`server running on http://localhost:${port}`);
+})
+
 // Start the server
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
